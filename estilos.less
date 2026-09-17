@@ -1,0 +1,26 @@
+/* Variable base */
+@color-base: #ff1818;
+@fuente-base: 14px;
+@color-acento: #ffffff;
+
+/* Mixin con Pensamiento recursivo y lógica funcional */
+.generar-alertas(@n) when (@n > 0) {
+    .alerta-@{n} {
+        background-color: darken(@color-base, @n *8%);
+        font-size: @fuente-base + (@n * 2px);
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        font-family: Arial, sans-serif;
+        color: darken(@color-acento, 10%);
+
+        & when (@n = 2) {
+            border: 5px solid blue;
+            font-weight: bold;
+            color: #fff;
+        }
+    }
+    .generar-alertas(@n - 1);
+}
+
+.generar-alertas(5);
